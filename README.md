@@ -91,6 +91,43 @@ python3 -m resistivity_ml.predict \
   --top 20
 ```
 
+## 一键完整脚本
+
+如果你的文件就是 `features_500.xlsx` 和 `features_600.xlsx`，目标列是
+`rho_clean`，可以直接运行：
+
+```bash
+python3 scripts/complete_resistivity_workflow.py \
+  --data-dir "D:/Machine learning" \
+  --file-500 features_500.xlsx \
+  --file-600 features_600.xlsx \
+  --target rho_clean
+```
+
+脚本会自动完成：
+
+- 读取 500 C 与 600 C Excel 数据；
+- 输出与 `rho_clean` 的相关系数排序；
+- 保存相关性热力图；
+- 用 `log10(rho_clean)` 训练 Ridge、RandomForest、ExtraTrees、GradientBoosting；
+- 交叉验证比较模型效果；
+- 保存最佳模型；
+- 保存前 20 个重要特征；
+- 如果提供候选表，还会预测并排序候选化合物。
+
+候选预测示例：
+
+```bash
+python3 scripts/complete_resistivity_workflow.py \
+  --data-dir "D:/Machine learning" \
+  --file-500 features_500.xlsx \
+  --file-600 features_600.xlsx \
+  --candidate-500 candidates_500.xlsx \
+  --candidate-600 candidates_600.xlsx \
+  --target rho_clean \
+  --direction min
+```
+
 输出列包括：
 
 - `predicted_log10_rho`

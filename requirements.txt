@@ -2,6 +2,8 @@ pandas
 numpy
 scikit-learn
 joblib
+matplotlib
 openpyxl
 pytest
+seaborn
 xlrd
