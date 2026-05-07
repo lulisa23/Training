@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "resistivity-ml"
+version = "0.1.0"
+description = "Machine-learning workflow for resistivity prediction and candidate ranking."
+requires-python = ">=3.10"
+dependencies = [
+  "joblib",
+  "numpy",
+  "openpyxl",
+  "pandas",
+  "scikit-learn",
+  "xlrd",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
